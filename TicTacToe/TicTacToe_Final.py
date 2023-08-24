@@ -1,5 +1,5 @@
 import os
-
+# game structure
 def printGrid(grid):
     for row in grid:
         print(' | '.join(row))
