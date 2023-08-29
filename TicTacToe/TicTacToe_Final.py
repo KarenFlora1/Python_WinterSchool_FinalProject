@@ -1,10 +1,8 @@
 import os
-# game structure       
 def printGrid(grid):
     for row in grid:
         print(' | '.join(row))
         print('-' * 9)
-
 def play(grid, x, y, symbol):
     if grid[x][y] == ' ':
         grid[x][y] = symbol
@@ -28,19 +26,21 @@ def checkWin(grid, symbol):
     return check_row() or check_column() or check_diagonals()
 
 names=[]
-#testar se realmente valida
-def receive_validate_names(names):
-        for i in range (2):
-            while True:
-                names.append(input(f"Type the {i+1} name: "))
-                if (len(names[i])>40):
-                    print("Error type1")
-                elif '\n' in names[i] or ':' in names[i]:
-                    print("Error type2")
-                else:
-                    break
-        return names
 
+def receive_validate_names(names):
+    for i in range(2):
+        while True:
+            name = input(f"Type the {i+1} name: ")
+            
+            if len(name) > 40:
+                print("Error type1")
+            elif '\n' in name or ':' in name:
+                print("Error type2")
+            else:
+                names.append(name)
+                break
+                
+    return names
 
 def assign_symbols(players):
     symbols = ['X', 'O']
@@ -58,8 +58,8 @@ def main():
     scores = {}
 
     if os.path.exists("scores1.txt"):
-        with open("scores1.txt", "r") as f:
-            for line in f:
+        with open("scores1.txt", "r") as Raid:
+            for line in Raid:
                 name, score = line.strip().split(":")
                 scores[name] = int(score)
 
