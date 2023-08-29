@@ -1,8 +1,13 @@
+#Importing from the os library, which is used to interact with the operating system.
 import os
+ 
+#Function responsible for printing the game board in the form of a 3x3 grid.      
 def printGrid(grid):
     for row in grid:
         print(' | '.join(row))
         print('-' * 9)
+        
+#Function that checks if the cell in position (x,y), in case it does not fill it.
 def play(grid, x, y, symbol):
     if grid[x][y] == ' ':
         grid[x][y] = symbol
@@ -10,6 +15,7 @@ def play(grid, x, y, symbol):
     else:
         return False
 
+#Function that checks if the current player (represented by the symbol) has won the game.Contains functions that check the cells in lines, columns and diagonals
 def checkWin(grid, symbol):
     def check_row():
             for row in grid:
@@ -27,6 +33,7 @@ def checkWin(grid, symbol):
 
 names=[]
 
+#Function that requests the names of two players that cannot contain a newline or a colon. Returns valid names in a list.
 def receive_validate_names(names):
     for i in range(2):
         while True:
@@ -42,10 +49,13 @@ def receive_validate_names(names):
                 
     return names
 
+#Atribui os símbolos 'X' e 'O' aos jogadores na ordem em que os nomes foram fornecidos.
 def assign_symbols(players):
     symbols = ['X', 'O']
     player_symbols = {players[0]: symbols[0], players[1]: symbols[1]}
     return player_symbols
+
+#Main function, calls all other methods, is the brain of the operation. Saves the scores in the file "scores1.txt".
 
 def main():
     grid = [[' ' for _ in range(3)] for _ in range(3)]
@@ -96,6 +106,7 @@ def main():
         for name, score in scores.items():
             f.write(f"{name}:{score}\n")
 
+#Run the program, first checking that it is running as the main function and not as an imported module. At the end it asks the user if he wants to continue playing.
 if __name__ == "__main__":
     while True:
         main()
